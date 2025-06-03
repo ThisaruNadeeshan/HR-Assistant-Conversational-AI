@@ -1,4 +1,4 @@
-import { Bot, Zap, Users, Shield } from 'lucide-react';
+import { Bot, Zap, Users, Shield, BrainCircuit, Languages } from 'lucide-react';
 
 export const features = [
   {
@@ -20,5 +20,15 @@ export const features = [
     icon: <Shield className="w-8 h-8" />,
     title: "Secure & Private",
     description: "Your conversations are protected with enterprise-grade security"
+  },
+  {
+    icon: <BrainCircuit className="w-8 h-8" />,
+    title: "Smart Learning",
+    description: "Improves over time to deliver even more accurate and helpful replies"
+  },
+  {
+    icon: <Languages className="w-8 h-8" />,
+    title: "Multilingual Support",
+    description: "Communicate in multiple languages with ease and accuracy"
   }
 ];
