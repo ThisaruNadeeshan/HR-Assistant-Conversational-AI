@@ -36,13 +36,13 @@ const ChatModal = ({ onClose }) => {
             AI Assistant
           </div>
           <div className="chat-actions">
-            <button
+            {/* <button
               className="refresh-button"
               onClick={handleRefresh}
               title="Refresh Chat"
             >
               <RefreshCw className="w-5 h-5" />
-            </button>
+            </button> */}
             <button
               className="close-button"
               onClick={onClose}
