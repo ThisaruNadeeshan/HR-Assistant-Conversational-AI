@@ -18,10 +18,11 @@ const HeroSection = ({ toggleChat }) => (
           <span>Powered by AI</span>
         </div>
         <h1 className="hero-title">
-          Meet Your New <span className="gradient-text"> AI Assistant</span>
+          Your Assistant <span className="gradient-text"> Iris AI </span>
         </h1>
         <p className="hero-description">
-          Experience the future of conversation with our intelligent chatbot...
+          Experience the future of conversation with Intelligent HR Assistant
+          for Modern Workplaces
         </p>
         <motion.button
           className="cta-button"

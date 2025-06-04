@@ -12,7 +12,7 @@ const ChatPreview = () => (
       <div className="chat-header">
         <div className="chat-avatar"></div>
         <div className="chat-info">
-          <div className="chat-name">AI Assistant</div>
+          <div className="chat-name">Assistant Iris</div>
           <div className="chat-status">Online</div>
         </div>
       </div>
