@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { FullPageChat } from 'flowise-embed-react';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { FullPageChat } from "flowise-embed-react";
 
 // Inline utility functions to avoid import issues
 const getChatConfig = () => {
   return {
     chatflowConfig: {
-      welcomeMessage: "Hello! I'm Iris AI, your HR Assistant. I can help you with employee information, send professional emails, and answer HR-related questions. How can I assist you today?",
+      welcomeMessage:
+        "Hello! I'm Iris AI, your HR Assistant. I can help you with employee information, send professional emails, and answer HR-related questions. How can I assist you today?",
       starterPrompts: [
         "Show me employee information",
         "Help me write a professional email",
         "What can you help me with?",
-        "How do I search for employees?"
-      ]
+        "How do I search for employees?",
+      ],
     },
     theme: {
       button: {
@@ -26,7 +27,8 @@ const getChatConfig = () => {
         title: "Iris AI - HR Assistant",
         titleAvatarSrc: "",
         showAgentMessages: true,
-        welcomeMessage: "Hello! I'm Iris AI, your HR Assistant. I can help you with employee information, send professional emails, and answer HR-related questions. How can I assist you today?",
+        welcomeMessage:
+          "Hello! I'm Iris AI, your HR Assistant. I can help you with employee information, send professional emails, and answer HR-related questions. How can I assist you today?",
         backgroundColor: "#ffffff",
         height: "100%",
         width: "100%",
@@ -50,9 +52,9 @@ const getChatConfig = () => {
           textColor: "#374151",
           sendButtonColor: "#6366f1",
           maxChars: 1000,
-        }
-      }
-    }
+        },
+      },
+    },
   };
 };
 
@@ -65,8 +67,10 @@ const handleChatReadyUtil = (callback) => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       // Look for chat interface elements
-      const chatElements = document.querySelectorAll('[class*="flowise"], [id*="flowise"], .chat-container, .message-container');
-      
+      const chatElements = document.querySelectorAll(
+        '[class*="flowise"], [id*="flowise"], .chat-container, .message-container'
+      );
+
       if (chatElements.length > 0) {
         // Chat is loaded
         callback && callback();
@@ -78,7 +82,7 @@ const handleChatReadyUtil = (callback) => {
   // Start observing
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 
   // Fallback timeout
@@ -91,12 +95,12 @@ const handleChatReadyUtil = (callback) => {
 /**
  * ChatContainer - Wrapper component for Flowise chat with enhanced functionality
  */
-const ChatContainer = ({ 
-  chatKey, 
-  onReady, 
+const ChatContainer = ({
+  chatKey,
+  onReady,
   onError,
-  className = '',
-  ...props 
+  className = "",
+  ...props
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -113,29 +117,35 @@ const ChatContainer = ({
       setIsInitialized(true);
       setHasError(false);
       onReady && onReady();
-      logChatEvent('chat_container_ready', { messageCount });
+      logChatEvent("chat_container_ready", { messageCount });
     }
   }, [isInitialized, onReady, messageCount]);
 
   // Handle errors
-  const handleChatError = useCallback((error) => {
-    setHasError(true);
-    setIsInitialized(false);
-    onError && onError(error);
-    logChatEvent('chat_container_error', { error: error.message || error });
-  }, [onError]);
+  const handleChatError = useCallback(
+    (error) => {
+      setHasError(true);
+      setIsInitialized(false);
+      onError && onError(error);
+      logChatEvent("chat_container_error", { error: error.message || error });
+    },
+    [onError]
+  );
 
   // Monitor chat messages
-  const handleMessageObserver = useCallback((messages) => {
-    if (messages && Array.isArray(messages)) {
-      setMessageCount(messages.length);
-      
-      // If we have messages and chat isn't marked as ready, mark it ready
-      if (messages.length > 0 && !isInitialized) {
-        handleChatInitialization();
+  const handleMessageObserver = useCallback(
+    (messages) => {
+      if (messages && Array.isArray(messages)) {
+        setMessageCount(messages.length);
+
+        // If we have messages and chat isn't marked as ready, mark it ready
+        if (messages.length > 0 && !isInitialized) {
+          handleChatInitialization();
+        }
       }
-    }
-  }, [isInitialized, handleChatInitialization]);
+    },
+    [isInitialized, handleChatInitialization]
+  );
 
   // Setup chat ready detection
   useEffect(() => {
@@ -157,7 +167,7 @@ const ChatContainer = ({
     // Fallback timeout to ensure chat is marked as ready
     initTimeoutRef.current = setTimeout(() => {
       if (!isInitialized && !hasError) {
-        console.log('Chat initialization timeout - marking as ready');
+        console.log("Chat initialization timeout - marking as ready");
         handleChatInitialization();
       }
     }, 5000);
@@ -174,16 +184,16 @@ const ChatContainer = ({
   const observersConfig = {
     // Observe when messages are added/updated
     observeMessages: handleMessageObserver,
-    
+
     // Observe when chat input changes
     observeUserInput: (input) => {
-      logChatEvent('user_typing', { inputLength: input?.length || 0 });
+      logChatEvent("user_typing", { inputLength: input?.length || 0 });
     },
-    
+
     // Observe when chat is loading
     observeLoading: (loading) => {
-      logChatEvent('chat_loading_state', { loading });
-    }
+      logChatEvent("chat_loading_state", { loading });
+    },
   };
 
   // Enhanced chatflow configuration
@@ -193,7 +203,7 @@ const ChatContainer = ({
     sessionId: `iris-ai-${Date.now()}`,
     streaming: true,
     uploads: false, // Disable file uploads for HR assistant
-    ...props.chatflowConfig
+    ...props.chatflowConfig,
   };
 
   // Enhanced theme configuration
@@ -202,21 +212,21 @@ const ChatContainer = ({
     chatWindow: {
       ...theme.chatWindow,
       // Override with any custom theme props
-      ...props.theme?.chatWindow
-    }
+      ...props.theme?.chatWindow,
+    },
   };
 
   return (
-    <div 
+    <div
       ref={chatRef}
       className={`chat-container-wrapper ${className}`}
       data-initialized={isInitialized}
       data-error={hasError}
       style={{
-        height: '100%',
-        width: '100%',
-        position: 'relative',
-        ...props.style
+        height: "100%",
+        width: "100%",
+        position: "relative",
+        ...props.style,
       }}
     >
       {/* Error State */}
@@ -225,8 +235,11 @@ const ChatContainer = ({
           <div className="error-content">
             <div className="error-icon">⚠️</div>
             <h3>Chat Temporarily Unavailable</h3>
-            <p>We're having trouble connecting to Iris AI. Please try refreshing the chat.</p>
-            <button 
+            <p>
+              We're having trouble connecting to Iris AI. Please try refreshing
+              the chat.
+            </p>
+            <button
               className="retry-button"
               onClick={() => {
                 setHasError(false);
@@ -250,20 +263,19 @@ const ChatContainer = ({
           observersConfig={observersConfig}
           theme={enhancedTheme}
           style={{
-            height: '100%',
-            width: '100%',
-            border: 'none',
-            background: 'transparent'
+            height: "100%",
+            width: "100%",
+            border: "none",
+            background: "transparent",
           }}
         />
       )}
 
       {/* Development Info (only in development) */}
-      {process.env.NODE_ENV === 'development' && (
+      {process.env.NODE_ENV === "development" && (
         <div className="chat-debug-info">
           <small>
-            Ready: {isInitialized ? '✅' : '⏳'} | 
-            Messages: {messageCount} | 
+            Ready: {isInitialized ? "✅" : "⏳"} | Messages: {messageCount} |
             Key: {chatKey}
           </small>
         </div>

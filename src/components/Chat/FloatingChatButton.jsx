@@ -17,9 +17,9 @@ const FloatingChatButton = ({ onClick, hasUnread = false }) => {
       title="Chat with Iris AI - HR Assistant"
     >
       <Bot className="w-6 h-6" />
-      
+
       {hasUnread && (
-        <motion.div 
+        <motion.div
           className="chat-notification"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -28,7 +28,7 @@ const FloatingChatButton = ({ onClick, hasUnread = false }) => {
           <div className="notification-dot"></div>
         </motion.div>
       )}
-      
+
       {/* Pulse effect for attention */}
       <motion.div
         className="pulse-ring"
@@ -42,13 +42,13 @@ const FloatingChatButton = ({ onClick, hasUnread = false }) => {
           ease: "easeInOut",
         }}
         style={{
-          position: 'absolute',
+          position: "absolute",
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
           zIndex: -1,
         }}
       />
