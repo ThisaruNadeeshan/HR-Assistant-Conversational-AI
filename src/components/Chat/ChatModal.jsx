@@ -8,10 +8,26 @@ const ChatModal = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  // Handle chat ready state
+  // Enhanced chat ready detection with scroll setup
   const handleChatReady = useCallback(() => {
     setIsLoading(false);
     console.log('✅ Chat is ready');
+    
+    // Ensure proper scrolling after chat loads
+    setTimeout(() => {
+      const chatContainer = document.querySelector('.flowise-container');
+      if (chatContainer) {
+        // Force enable scrolling on Flowise elements
+        const flowiseElements = chatContainer.querySelectorAll('*');
+        flowiseElements.forEach(element => {
+          const style = window.getComputedStyle(element);
+          if (style.overflow === 'hidden' && element.scrollHeight > element.clientHeight) {
+            element.style.overflow = 'auto';
+          }
+        });
+        console.log('🔄 Scroll enabled for chat elements');
+      }
+    }, 1000);
   }, []);
 
   // Safe chat storage clearing - without DOM manipulation
@@ -259,6 +275,13 @@ const ChatModal = ({ onClose }) => {
                       sendButtonColor: "#6366f1",
                     }
                   }
+                }}
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  border: 'none',
+                  background: 'transparent',
+                  overflow: 'hidden'
                 }}
               />
             </div>

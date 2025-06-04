@@ -70,7 +70,7 @@ const App = () => {
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Footer toggleChat={toggleChat} />
     </div>
   );
 };
