@@ -8,26 +8,104 @@ const ChatModal = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  // Enhanced chat ready detection with scroll setup
+  // Enhanced chat ready detection with aggressive scroll setup
   const handleChatReady = useCallback(() => {
     setIsLoading(false);
     console.log('✅ Chat is ready');
     
-    // Ensure proper scrolling after chat loads
-    setTimeout(() => {
-      const chatContainer = document.querySelector('.flowise-container');
-      if (chatContainer) {
-        // Force enable scrolling on Flowise elements
-        const flowiseElements = chatContainer.querySelectorAll('*');
-        flowiseElements.forEach(element => {
-          const style = window.getComputedStyle(element);
-          if (style.overflow === 'hidden' && element.scrollHeight > element.clientHeight) {
-            element.style.overflow = 'auto';
+    // Aggressive scroll enabler after chat loads
+    const enableScrolling = () => {
+      try {
+        // Target the Flowise container
+        const chatContainer = document.querySelector('.flowise-container');
+        if (chatContainer) {
+          console.log('🎯 Found chat container, applying scroll fixes...');
+          
+          // Force scrolling on all elements within Flowise
+          const allElements = chatContainer.querySelectorAll('*');
+          allElements.forEach((element, index) => {
+            const computedStyle = window.getComputedStyle(element);
+            
+            // Check if element needs scrolling
+            if (element.scrollHeight > element.clientHeight) {
+              element.style.overflowY = 'auto';
+              element.style.overflowX = 'hidden';
+              element.style.scrollBehavior = 'smooth';
+              console.log(`📜 Enabled scrolling on element ${index}`);
+            }
+            
+            // Force specific styles for common problematic elements
+            if (computedStyle.overflow === 'hidden' || 
+                computedStyle.overflowY === 'hidden') {
+              element.style.overflowY = 'auto';
+              element.style.maxHeight = '100%';
+              console.log(`🔧 Fixed hidden overflow on element ${index}`);
+            }
+            
+            // Target iframe specifically
+            if (element.tagName === 'IFRAME') {
+              element.style.height = '100%';
+              element.style.width = '100%';
+              console.log('🖼️ Fixed iframe dimensions');
+            }
+            
+            // Target div elements with height styles
+            if (element.tagName === 'DIV' && 
+                (element.style.height || computedStyle.height)) {
+              element.style.overflowY = 'auto';
+              element.style.height = 'auto';
+              element.style.maxHeight = '100%';
+              element.style.flex = '1';
+            }
+          });
+          
+          // Apply specific fixes to the chat container itself
+          chatContainer.style.height = '100%';
+          chatContainer.style.overflowY = 'auto';
+          chatContainer.style.display = 'flex';
+          chatContainer.style.flexDirection = 'column';
+          
+          // Find and fix the main chat content area
+          const chatContent = chatContainer.querySelector('div');
+          if (chatContent) {
+            chatContent.style.height = '100%';
+            chatContent.style.overflowY = 'auto';
+            chatContent.style.flex = '1';
+            chatContent.style.display = 'flex';
+            chatContent.style.flexDirection = 'column';
+            console.log('📱 Fixed main chat content area');
           }
-        });
-        console.log('🔄 Scroll enabled for chat elements');
+          
+          console.log('✅ Scroll fixes applied successfully');
+        }
+      } catch (error) {
+        console.error('❌ Error applying scroll fixes:', error);
       }
-    }, 1000);
+    };
+    
+    // Apply scroll fixes immediately and with delays
+    enableScrolling();
+    setTimeout(enableScrolling, 500);
+    setTimeout(enableScrolling, 1000);
+    setTimeout(enableScrolling, 2000);
+    
+    // Set up observer for dynamic content
+    const observer = new MutationObserver(() => {
+      enableScrolling();
+    });
+    
+    const chatContainer = document.querySelector('.flowise-container');
+    if (chatContainer) {
+      observer.observe(chatContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+      
+      // Disconnect observer after 10 seconds to prevent memory leaks
+      setTimeout(() => observer.disconnect(), 10000);
+    }
   }, []);
 
   // Safe chat storage clearing - without DOM manipulation
