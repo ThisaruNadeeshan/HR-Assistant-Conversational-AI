@@ -257,8 +257,8 @@ const ChatContainer = ({
       {!hasError && (
         <FullPageChat
           key={chatKey}
-          chatflowid="203f516c-89c9-4acb-8277-b06189893183"
-          apiHost="https://cloud.flowiseai.com"
+          chatflowid="32e941e7-1150-4260-927d-7696e90391d0"
+          apiHost="http://localhost:3000"
           chatflowConfig={enhancedChatflowConfig}
           observersConfig={observersConfig}
           theme={enhancedTheme}
