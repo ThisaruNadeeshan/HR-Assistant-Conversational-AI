@@ -51,7 +51,7 @@ const HeroSection = ({ toggleChat }) => (
         </motion.div>
 
         <p className="hero-description">
-          Experience seamless HR support with Iris AI – your 24/7 intelligent
+          Experience seamless HR support with Iris AI–your 24/7 intelligent
           assistant for employee information, professional email generation, and
           HR workflows. Powered by advanced AI technology.
         </p>
