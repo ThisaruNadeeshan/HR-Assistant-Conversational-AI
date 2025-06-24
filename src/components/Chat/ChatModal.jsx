@@ -122,7 +122,7 @@ const ChatModal = ({ onClose }) => {
           key.toLowerCase().includes('chatflow') ||
           key.toLowerCase().includes('chat') ||
           key.toLowerCase().includes('iris') ||
-          key.includes('203f516c-89c9-4acb-8277-b06189893183')
+          key.includes('08e769fe-332f-4a2d-bc2a-03065a16d7c2')
         )) {
           localKeys.push(key);
         }
@@ -142,7 +142,7 @@ const ChatModal = ({ onClose }) => {
           key.toLowerCase().includes('chatflow') ||
           key.toLowerCase().includes('chat') ||
           key.toLowerCase().includes('iris') ||
-          key.includes('203f516c-89c9-4acb-8277-b06189893183')
+          key.includes('08e769fe-332f-4a2d-bc2a-03065a16d7c2')
         )) {
           sessionKeys.push(key);
         }
@@ -303,8 +303,8 @@ const ChatModal = ({ onClose }) => {
             <div className={`flowise-container ${isLoading ? 'hidden' : ''}`}>
               <FullPageChat
                 key={chatKey}
-                chatflowid="203f516c-89c9-4acb-8277-b06189893183"
-                apiHost="https://cloud.flowiseai.com"
+                chatflowid="08e769fe-332f-4a2d-bc2a-03065a16d7c2"
+                apiHost="http://localhost:3000"
                 chatflowConfig={{
                   welcomeMessage: "Hello! I'm Iris AI, your HR Assistant. How can I help you today?",
                 }}
