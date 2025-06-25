@@ -127,7 +127,7 @@ const ChatModal = ({ onClose }) => {
             key.toLowerCase().includes("chatflow") ||
             key.toLowerCase().includes("chat") ||
             key.toLowerCase().includes("iris") ||
-            key.includes("32e941e7-1150-4260-927d-7696e90391d0"))
+            key.includes("08e769fe-332f-4a2d-bc2a-03065a16d7c2"))
         ) {
           localKeys.push(key);
         }
@@ -148,7 +148,7 @@ const ChatModal = ({ onClose }) => {
             key.toLowerCase().includes("chatflow") ||
             key.toLowerCase().includes("chat") ||
             key.toLowerCase().includes("iris") ||
-            key.includes("32e941e7-1150-4260-927d-7696e90391d0"))
+            key.includes("08e769fe-332f-4a2d-bc2a-03065a16d7c2"))
         ) {
           sessionKeys.push(key);
         }
@@ -310,7 +310,7 @@ const ChatModal = ({ onClose }) => {
             <div className={`flowise-container ${isLoading ? "hidden" : ""}`}>
               <FullPageChat
                 key={chatKey}
-                chatflowid="32e941e7-1150-4260-927d-7696e90391d0"
+                chatflowid="08e769fe-332f-4a2d-bc2a-03065a16d7c2"
                 apiHost="http://localhost:3000"
                 chatflowConfig={{
                   welcomeMessage:
