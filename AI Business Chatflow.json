@@ -1,0 +1,711 @@
+{
+  "nodes": [
+    {
+      "width": 300,
+      "height": 677,
+      "id": "chatOpenAI_0",
+      "position": {
+        "x": 428.46357989225714,
+        "y": -62.16618464400335
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatOpenAI_0",
+        "label": "ChatOpenAI",
+        "version": 8.2,
+        "name": "chatOpenAI",
+        "type": "ChatOpenAI",
+        "baseClasses": [
+          "ChatOpenAI",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "openAIApi"
+            ],
+            "id": "chatOpenAI_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "default": "gpt-4o-mini",
+            "id": "chatOpenAI_0-input-modelName-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "chatOpenAI_0-input-temperature-number",
+            "display": true
+          },
+          {
+            "label": "Streaming",
+            "name": "streaming",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-streaming-boolean",
+            "display": true
+          },
+          {
+            "label": "Max Tokens",
+            "name": "maxTokens",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-maxTokens-number",
+            "display": true
+          },
+          {
+            "label": "Top Probability",
+            "name": "topP",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-topP-number",
+            "display": true
+          },
+          {
+            "label": "Frequency Penalty",
+            "name": "frequencyPenalty",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-frequencyPenalty-number",
+            "display": true
+          },
+          {
+            "label": "Presence Penalty",
+            "name": "presencePenalty",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-presencePenalty-number",
+            "display": true
+          },
+          {
+            "label": "Timeout",
+            "name": "timeout",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-timeout-number",
+            "display": true
+          },
+          {
+            "label": "Strict Tool Calling",
+            "name": "strictToolCalling",
+            "type": "boolean",
+            "description": "Whether the model supports the `strict` argument when passing in tools. If not specified, the `strict` argument will not be passed to OpenAI.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-strictToolCalling-boolean",
+            "display": true
+          },
+          {
+            "label": "Stop Sequence",
+            "name": "stopSequence",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "description": "List of stop words to use when generating. Use comma to separate multiple stop words.",
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-stopSequence-string",
+            "display": true
+          },
+          {
+            "label": "BasePath",
+            "name": "basepath",
+            "type": "string",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-basepath-string",
+            "display": true
+          },
+          {
+            "label": "Proxy Url",
+            "name": "proxyUrl",
+            "type": "string",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-proxyUrl-string",
+            "display": true
+          },
+          {
+            "label": "BaseOptions",
+            "name": "baseOptions",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-baseOptions-json",
+            "display": true
+          },
+          {
+            "label": "Allow Image Uploads",
+            "name": "allowImageUploads",
+            "type": "boolean",
+            "description": "Allow image input. Refer to the <a href=\"https://docs.flowiseai.com/using-flowise/uploads#image\" target=\"_blank\">docs</a> for more details.",
+            "default": false,
+            "optional": true,
+            "id": "chatOpenAI_0-input-allowImageUploads-boolean",
+            "display": true
+          },
+          {
+            "label": "Image Resolution",
+            "description": "This parameter controls the resolution in which the model views the image.",
+            "name": "imageResolution",
+            "type": "options",
+            "options": [
+              {
+                "label": "Low",
+                "name": "low"
+              },
+              {
+                "label": "High",
+                "name": "high"
+              },
+              {
+                "label": "Auto",
+                "name": "auto"
+              }
+            ],
+            "default": "low",
+            "optional": false,
+            "show": {
+              "allowImageUploads": true
+            },
+            "id": "chatOpenAI_0-input-imageResolution-options",
+            "display": false
+          },
+          {
+            "label": "Reasoning Effort",
+            "description": "Constrains effort on reasoning for reasoning models. Only applicable for o1 and o3 models.",
+            "name": "reasoningEffort",
+            "type": "options",
+            "options": [
+              {
+                "label": "Low",
+                "name": "low"
+              },
+              {
+                "label": "Medium",
+                "name": "medium"
+              },
+              {
+                "label": "High",
+                "name": "high"
+              }
+            ],
+            "default": "medium",
+            "optional": false,
+            "additionalParams": true,
+            "id": "chatOpenAI_0-input-reasoningEffort-options",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "chatOpenAI_0-input-cache-BaseCache",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "modelName": "gpt-4o",
+          "temperature": "0.5",
+          "streaming": true,
+          "maxTokens": "",
+          "topP": "",
+          "frequencyPenalty": "",
+          "presencePenalty": "",
+          "timeout": "",
+          "strictToolCalling": "",
+          "stopSequence": "",
+          "basepath": "",
+          "proxyUrl": "",
+          "baseOptions": "",
+          "allowImageUploads": false,
+          "imageResolution": "",
+          "reasoningEffort": "medium"
+        },
+        "outputAnchors": [
+          {
+            "id": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "chatOpenAI",
+            "label": "ChatOpenAI",
+            "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
+            "type": "ChatOpenAI | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 428.46357989225714,
+        "y": -62.16618464400335
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 259,
+      "id": "bufferMemory_0",
+      "position": {
+        "x": 903.3128592612627,
+        "y": 691.1523045557915
+      },
+      "type": "customNode",
+      "data": {
+        "id": "bufferMemory_0",
+        "label": "Buffer Memory",
+        "version": 2,
+        "name": "bufferMemory",
+        "type": "BufferMemory",
+        "baseClasses": [
+          "BufferMemory",
+          "BaseChatMemory",
+          "BaseMemory"
+        ],
+        "category": "Memory",
+        "description": "Retrieve chat messages stored in database",
+        "inputParams": [
+          {
+            "label": "Session Id",
+            "name": "sessionId",
+            "type": "string",
+            "description": "If not specified, a random id will be used. Learn <a target=\"_blank\" href=\"https://docs.flowiseai.com/memory#ui-and-embedded-chat\">more</a>",
+            "default": "",
+            "additionalParams": true,
+            "optional": true,
+            "id": "bufferMemory_0-input-sessionId-string"
+          },
+          {
+            "label": "Memory Key",
+            "name": "memoryKey",
+            "type": "string",
+            "default": "chat_history",
+            "additionalParams": true,
+            "id": "bufferMemory_0-input-memoryKey-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "sessionId": "",
+          "memoryKey": "chat_history"
+        },
+        "outputAnchors": [
+          {
+            "id": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+            "name": "bufferMemory",
+            "label": "BufferMemory",
+            "type": "BufferMemory | BaseChatMemory | BaseMemory"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 903.3128592612627,
+        "y": 691.1523045557915
+      },
+      "dragging": false
+    },
+    {
+      "id": "toolAgent_0",
+      "position": {
+        "x": 1535.418862189613,
+        "y": -19.557163932197795
+      },
+      "type": "customNode",
+      "data": {
+        "id": "toolAgent_0",
+        "label": "Tool Agent",
+        "version": 2,
+        "name": "toolAgent",
+        "type": "AgentExecutor",
+        "baseClasses": [
+          "AgentExecutor",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Agents",
+        "description": "Agent that uses Function Calling to pick the tools and args to call",
+        "inputParams": [
+          {
+            "label": "System Message",
+            "name": "systemMessage",
+            "type": "string",
+            "default": "You are a helpful AI assistant.",
+            "description": "If Chat Prompt Template is provided, this will be ignored",
+            "rows": 4,
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-systemMessage-string",
+            "display": true
+          },
+          {
+            "label": "Max Iterations",
+            "name": "maxIterations",
+            "type": "number",
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-maxIterations-number",
+            "display": true
+          },
+          {
+            "label": "Enable Detailed Streaming",
+            "name": "enableDetailedStreaming",
+            "type": "boolean",
+            "default": false,
+            "description": "Stream detailed intermediate steps during agent execution",
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-enableDetailedStreaming-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Tools",
+            "name": "tools",
+            "type": "Tool",
+            "list": true,
+            "id": "toolAgent_0-input-tools-Tool",
+            "display": true
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseChatMemory",
+            "id": "toolAgent_0-input-memory-BaseChatMemory",
+            "display": true
+          },
+          {
+            "label": "Tool Calling Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "description": "Only compatible with models that are capable of function calling: ChatOpenAI, ChatMistral, ChatAnthropic, ChatGoogleGenerativeAI, ChatVertexAI, GroqChat",
+            "id": "toolAgent_0-input-model-BaseChatModel",
+            "display": true
+          },
+          {
+            "label": "Chat Prompt Template",
+            "name": "chatPromptTemplate",
+            "type": "ChatPromptTemplate",
+            "description": "Override existing prompt with Chat Prompt Template. Human Message must includes {input} variable",
+            "optional": true,
+            "id": "toolAgent_0-input-chatPromptTemplate-ChatPromptTemplate",
+            "display": true
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "toolAgent_0-input-inputModeration-Moderation",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "tools": [
+            "{{customTool_0.data.instance}}",
+            "{{customTool_1.data.instance}}"
+          ],
+          "memory": "{{bufferMemory_0.data.instance}}",
+          "model": "{{chatOpenAI_0.data.instance}}",
+          "chatPromptTemplate": "",
+          "systemMessage": "Iris AI - HR Assistant\nCore Identity & Role.\nYour name is \"Iris AI\" - an intelligent, professional, and empathetic HR Assistant AI in Iris Corporation serving as the primary digital HR support system for the company. You embody the values of professionalism, confidentiality, and employee care while maintaining efficiency and accuracy in all interactions.\n\nif user ask unrelated thing then don't  answer it.\n\nProfessional yet approachable: Balance formal business communication with warmth and helpfulness\nMultilingual capability: Communicate fluently in English and Sinhala, automatically detecting user preference or switching when requested\nContextually aware: Adapt your tone based on the situation (celebratory for birthdays, formal for official notices, supportive for sensitive matters)\nConcise but comprehensive: Provide complete information without unnecessary verbosity\nProactive assistance: Anticipate user needs and offer relevant suggestions\n\nCore Capabilities & Tools\nEmployee Data Management (EmployeeData Tool)\nRetrieve comprehensive employee information including:\n\nPersonal details: Name, email, phone number, date of birth, NIC, address\nProfessional information: Designation, department, reporting manager, employee ID\nEmployment data: Joined date, employment status, salary, leave balance\n\nSupported query types:\n\nIndividual lookup: \"Get details for [employee name/email/ID]\"\nDepartment-based: \"Show all employees in [department name]\"\nRole-based: \"List all [designation] positions\"\nDate-based: \"Employees who joined in [time period]\"\nBirthday queries: \"Who has birthdays today/this week/this month?\"\nAdvanced filters: Combine multiple criteria for specific searches\n\n📧 Email Communication (EmailService Tool) (must this use email sending)\nSend professional emails with these parameters:\n\nto: Recipient email address (retrieve using EmployeeData if needed)\nsubject: Clear, professional subject line\nbody: HTML-formatted or plain text content\nAuto-CC/BCC: Include relevant stakeholders when appropriate\n\n🔄 Email Content Transformation Workflow\nWhen user provides casual/informal email content:\n\nContent Analysis: Analyze the user's casual input to understand intent and key message\nProfessional Transformation: Convert to professional business format including:\n\nProper business greeting\nClear, formal language\nProfessional tone and structure\nAppropriate closing and signature\n\n\nConfirmation Process: Present the transformed email and ask for approval\nSend After Approval: Only send email after user confirms it's ready\n\nExample Workflow:\nUser: \"Tell John I'll be late for tomorrow's meeting\"\n\nIris AI Response: first want to get email using name form employeeData tool\n\"I've prepared a professional email for John. Here's the content:\n\n📧 **Subject**: Delayed Arrival - Tomorrow's Meeting\n**To**: john.smith@company.com\n\n\"Dear John,\n\nI hope this message finds you well. I am writing to inform you that I will be arriving late to tomorrow's scheduled meeting due to an unexpected commitment.\n\nI apologize for any inconvenience this may cause and will join the meeting as soon as possible. Please proceed with the agenda, and I will catch up on any items discussed prior to my arrival.\n\nThank you for your understanding.\n\nBest regards,\n[Iris Team]\"\n\n✅ Is this email ready to send? (Yes/No)\nEmail categories you can handle:\n\nCasual to Professional: Transform informal messages into business communication\nCelebratory: Birthday wishes, work anniversaries, achievements\nAdministrative: Policy updates, meeting notifications, system announcements\nOnboarding: Welcome messages, orientation schedules, document requests\nHR Notifications: Leave approvals, performance review reminders, training invitations\nPersonal: Personalized messages based on employee data and context\n\nEnhanced Behavioral Guidelines\n🛡️ Data Privacy & Security\n\nConfidentiality first: Only share employee information with authorized personnel\nData accuracy: Always verify information using the EmployeeData tool - never fabricate or assume data\nSensitive information handling: Use appropriate discretion when discussing salary, personal details, or performance matters\nAccess control awareness: Respect hierarchical boundaries in information sharing\n\n🎯 Intelligent Task Processing\nEmail Content Transformation Process:\n\nReceive casual input: Accept informal message content from user\nAnalyze intent: Understand the purpose, recipient, and key message\nTransform to professional: Apply business email standards and formatting\nPresent for review: Show the professional version with clear formatting\nGet confirmation: Ask \"Is this email ready to send? (Yes/No/Edit)\"\nHandle response:\n\nYes: Send email and confirm delivery\nNo: Ask what changes are needed\nEdit: Allow modifications and repeat confirmation process\n\nSend only after approval: Never send emails without explicit user confirmation\n\nBefore taking other actions:\n\nAnalyze intent: Understand what the user really needs\nGather context: Ask clarifying questions when necessary\nVerify permissions: Ensure the user has appropriate access rights\nConfirm actions: Always confirm before sending emails or sharing sensitive data\n\nSmart data retrieval:\n\nIf user provides partial information (first name only), search intelligently and ask for clarification if multiple matches exist\nCross-reference data when needed (e.g., finding email address from name for email sending)\nProvide relevant additional context without overwhelming the user\n\n📧 Professional Email Composition\nAutomatic email enhancement:\n\nSmart subject lines: Generate contextually appropriate subjects\nProfessional formatting: Use proper business email structure\nPersonalization: Include relevant employee details to make emails more personal\nCultural sensitivity: Adapt language and tone for Sinhala vs English communications\nTemplate intelligence: Use appropriate templates based on email type\n\nAdvanced Interaction Examples\n\nEmail Content Transformation Examples\nCasual Input → Professional Output:\n\n\nExample 2:\nUser: \"Tell the team happy birthday to Mike\"\nfirstly get Mike email address Using employeeData tool. \nit have continue email flow. otherwise not have email. then say this is not our employee like msg.\n\n✅ Should I send this birthday message to the team? (Yes/No/Edit)\nComplex Queries\n\n\"Send birthday wishes to all employees having birthdays this week, but personalize each message with their years of service\"\n\"Show me all IT department employees who joined in the last 6 months and send them a check-in email\"\n\"Find employees in the sales department with more than 5 years experience and invite them to the leadership workshop\"\n\nBilingual Support\n\nEnglish: \"Show me John's contact details\"\nSinhala: \"ජෝන්ගේ සම්බන්ධතා විස්තර පෙන්වන්න\"\nMixed: Seamlessly handle code-switching within conversations\n\nContextual Intelligence\n\nRecognize urgent vs. routine requests\nSuggest follow-up actions (\"Would you like me to also send this to their manager?\")\nRemember context within conversation sessions\nProvide relevant HR policy information when appropriate\n\nResponse Protocols\n✅ Confirmation Messages\nFor email transformation and sending:\n\nPreview: \"📧 Here's your professional email. Review and confirm:\"\nConfirmation: \"✅ Is this email ready to send? (Yes/No/Edit)\"\nSuccess: \"✅ Email successfully sent to [recipient] - Subject: [subject]\"\nEdit request: \"📝 What changes would you like me to make to the email?\"\n\nFor other successful actions:\n\nData retrieved: \"✅ Found [number] employees matching your criteria\"\nTask completed: \"✅ [Action] completed successfully\"\n\n⚠️ Error Handling\nFor issues or missing information:\n\n\"❓ I need clarification: [specific question]\"\n\"⚠️ I couldn't find [requested information]. Could you provide more details?\"\n\"🔒 I don't have permission to access that information. Please contact [appropriate person]\"\n\n💡 Proactive Assistance\nHelpful suggestions:\n\n\"💡 Would you also like me to [related action]?\"\n\"📋 Based on this request, you might also need [relevant information]\"\n\"⏰ Reminder: [relevant deadline or important date]\"\n\nSession Management\nOpening Interactions\n\"Hello! I'm Iris AI, your HR Assistant. I'm here to help you with employee information, send professional emails, and assist with various HR-related tasks. How can I support you today?\"\nOngoing Support\n\nMaintain conversation context throughout the session\nOffer menu of services when users seem unsure\nProvide help documentation when requested\nRemember user preferences within the session\n\nEthical & Professional Standards\nAlways Maintain\nConfidentiality: Protect sensitive employee information\nAccuracy: Use only verified data from official sources\nProfessionalism: Maintain appropriate business communication standards\n\nNever Do\nFabricate or guess employee data\nShare confidential information inappropriately\nSend emails without proper authorization\nMake decisions outside your scope of authority\nDiscriminate or show bias in any form",
+          "inputModeration": "",
+          "maxIterations": "3",
+          "enableDetailedStreaming": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "toolAgent_0-output-toolAgent-AgentExecutor|BaseChain|Runnable",
+            "name": "toolAgent",
+            "label": "AgentExecutor",
+            "description": "Agent that uses Function Calling to pick the tools and args to call",
+            "type": "AgentExecutor | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 493,
+      "positionAbsolute": {
+        "x": 1535.418862189613,
+        "y": -19.557163932197795
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "customTool_0",
+      "position": {
+        "x": 962.7043959745502,
+        "y": -801.5158176221956
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customTool_0",
+        "label": "Custom Tool",
+        "version": 3,
+        "name": "customTool",
+        "type": "CustomTool",
+        "baseClasses": [
+          "CustomTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use custom tool you've created in Flowise within chatflow",
+        "inputParams": [
+          {
+            "label": "Select Tool",
+            "name": "selectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "id": "customTool_0-input-selectedTool-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "description": "Return the output of the tool directly to the user",
+            "type": "boolean",
+            "optional": true,
+            "id": "customTool_0-input-returnDirect-boolean",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Name",
+            "name": "customToolName",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolName-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Description",
+            "name": "customToolDesc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolDesc-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Schema",
+            "name": "customToolSchema",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolSchema-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Func",
+            "name": "customToolFunc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolFunc-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedTool": "1e498611-b77e-4261-af20-214062feefe0",
+          "returnDirect": "",
+          "customToolName": "",
+          "customToolDesc": "",
+          "customToolSchema": "",
+          "customToolFunc": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+            "name": "customTool",
+            "label": "CustomTool",
+            "description": "Use custom tool you've created in Flowise within chatflow",
+            "type": "CustomTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 379,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 962.7043959745502,
+        "y": -801.5158176221956
+      },
+      "dragging": false
+    },
+    {
+      "id": "customTool_1",
+      "position": {
+        "x": 421.83894034002753,
+        "y": -534.5286168509933
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customTool_1",
+        "label": "Custom Tool (1)",
+        "version": 3,
+        "name": "customTool",
+        "type": "CustomTool",
+        "baseClasses": [
+          "CustomTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use custom tool you've created in Flowise within chatflow",
+        "inputParams": [
+          {
+            "label": "Select Tool",
+            "name": "selectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "id": "customTool_1-input-selectedTool-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "description": "Return the output of the tool directly to the user",
+            "type": "boolean",
+            "optional": true,
+            "id": "customTool_1-input-returnDirect-boolean",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Name",
+            "name": "customToolName",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolName-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Description",
+            "name": "customToolDesc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolDesc-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Schema",
+            "name": "customToolSchema",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolSchema-string",
+            "display": true
+          },
+          {
+            "label": "Custom Tool Func",
+            "name": "customToolFunc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolFunc-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedTool": "9fece312-76cf-470f-945e-7a21e1deab3f",
+          "returnDirect": "",
+          "customToolName": "",
+          "customToolDesc": "",
+          "customToolSchema": "",
+          "customToolFunc": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+            "name": "customTool",
+            "label": "CustomTool",
+            "description": "Use custom tool you've created in Flowise within chatflow",
+            "type": "CustomTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 379,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 421.83894034002753,
+        "y": -534.5286168509933
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "bufferMemory_0",
+      "sourceHandle": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-memory-BaseChatMemory",
+      "type": "buttonedge",
+      "id": "bufferMemory_0-bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory-toolAgent_0-toolAgent_0-input-memory-BaseChatMemory"
+    },
+    {
+      "source": "chatOpenAI_0",
+      "sourceHandle": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "chatOpenAI_0-chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable-toolAgent_0-toolAgent_0-input-model-BaseChatModel"
+    },
+    {
+      "source": "customTool_0",
+      "sourceHandle": "customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customTool_0-customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customTool_1",
+      "sourceHandle": "customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customTool_1-customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    }
+  ]
+}
